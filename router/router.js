@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Blogs, HomeRemedy, Quiz, Plants, Collection, Contact, Product, User, QuizResult } = require('../models/model');
+const { Blogs, HomeRemedy, Quiz, Plants, Collection, Contact, Product, User, QuizResult, HomeRemedies } = require('../models/model');
 
 // Root Route (API base path)
 router.get('/', (req, res) => {
@@ -139,4 +139,8 @@ try {
   res.status(500).json({ message: 'Failed to save quiz result', error });
 }
 });
+router.get('/alldata/homeRemedies', async (req, res) => {
+  let data = await HomeRemedies.find({})
+   res.status(200).json({ data: data });
+ })
 module.exports = router; 

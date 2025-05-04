@@ -122,6 +122,43 @@ const quizResultSchema = new mongoose.Schema({
   });
   const QuizResult = mongoose.model('quizresult', quizResultSchema);
 
+  const RemedySchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: true
+    },
+    ingredients: {
+      type: [String],
+      default: []
+    },
+    steps: {
+      type: [String],
+      default: []
+    },
+    video_link: {
+      type: String,
+      default: ''
+    },
+    image_link: {
+      type: String,
+      default: ''
+    }
+  });
+  
+  const DiseaseRemedySchema = new mongoose.Schema({
+    disease: {
+      type: String,
+      required: true
+    },
+    remedies: {
+      type: [RemedySchema],
+      required: true
+    }
+  }, {
+    collection: 'HomeRemedies', // Your MongoDB collection name
+    timestamps: true            // Automatically adds createdAt and updatedAt
+  });
+  const HomeRemedies = mongoose.model('DiseaseRemedy', DiseaseRemedySchema)
 const Contact = mongoose.model('Contact', ContactSchema);
 const Product = mongoose.model('Product', UserProductSchema);
 const User = mongoose.model('User', UserSchema);
@@ -136,5 +173,6 @@ module.exports = {
   Contact,
   Product,
   User,
- QuizResult
+ QuizResult,
+ HomeRemedies
 };
