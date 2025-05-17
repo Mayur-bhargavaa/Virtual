@@ -114,6 +114,7 @@ const UserSchema = new Schema({
 }, { timestamps: true });
 
 const quizResultSchema = new mongoose.Schema({
+    userId: { type: String, required: true },
     userName: { type: String, required: true },
     score: { type: Number, required: true },
     totalQuestions: { type: Number, required: true },

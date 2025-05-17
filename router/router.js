@@ -124,9 +124,10 @@ router.get('/alldata/quiz', async (req, res) => {
 router.post('/save', async (req, res) => {
   console.log('Received POST request:', req.body);
 try {
-  const { userName, score, totalQuestions, correctAnswers } = req.body;
+  const {  userId, userName, score, totalQuestions, correctAnswers } = req.body;
 
   const newResult = new QuizResult({
+     userId,
     userName,
     score,
     totalQuestions,
